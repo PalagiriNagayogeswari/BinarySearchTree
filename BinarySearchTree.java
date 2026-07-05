@@ -1,6 +1,7 @@
 public class BinarySearchTree<T extends Comparable<T>> {
 
     class Node {
+
         T data;
         Node left;
         Node right;
@@ -14,25 +15,21 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     Node root;
 
-    // Insert Method
+    // Insert Node
     public void add(T data) {
-
         root = addRecursive(root, data);
     }
 
-    // Recursive Insert
     private Node addRecursive(Node root, T data) {
 
-        if (root == null) {
+        if (root == null)
             return new Node(data);
-        }
 
-        if (data.compareTo(root.data) < 0) {
+        if (data.compareTo(root.data) < 0)
             root.left = addRecursive(root.left, data);
-        }
-        else if (data.compareTo(root.data) > 0) {
+
+        else if (data.compareTo(root.data) > 0)
             root.right = addRecursive(root.right, data);
-        }
 
         return root;
     }
@@ -47,6 +44,15 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
     }
 
+    // Size of Tree
+    public int size(Node root) {
+
+        if (root == null)
+            return 0;
+
+        return 1 + size(root.left) + size(root.right);
+    }
+
     public static void main(String[] args) {
 
         BinarySearchTree<Integer> bst = new BinarySearchTree<>();
@@ -54,9 +60,22 @@ public class BinarySearchTree<T extends Comparable<T>> {
         bst.add(56);
         bst.add(30);
         bst.add(70);
+        bst.add(22);
+        bst.add(40);
+        bst.add(60);
+        bst.add(95);
+        bst.add(11);
+        bst.add(65);
+        bst.add(3);
+        bst.add(16);
+        bst.add(63);
+        bst.add(67);
 
         System.out.println("Inorder Traversal:");
-
         bst.inorder(bst.root);
+
+        System.out.println("\n");
+
+        System.out.println("Size of Binary Tree : " + bst.size(bst.root));
     }
 }
